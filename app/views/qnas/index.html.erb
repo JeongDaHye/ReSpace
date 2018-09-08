@@ -1,0 +1,27 @@
+<div class="row">
+<div class="col-md-12">
+<br><br><br><br>
+<div class="table-responsive">
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @qnas.each do |qna| %>
+      <tr>
+        <td><%= link_to qna.title, qna %></td>
+        <td><%= qna.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<br>
+
+<%= link_to 'New Post', new_qna_path %>

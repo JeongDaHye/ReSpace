@@ -1,0 +1,2 @@
+module QnasHelper
+end

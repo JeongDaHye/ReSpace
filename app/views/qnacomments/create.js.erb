@@ -1,0 +1,8 @@
+$('#qnacomment').val("");
+$('#qnacomment-size').text("<%= @qna.qnacomments.size %>");
+$('#qnacomment_box').append('<li class="collection-item" id="comment_<%= @new_qnacomment.id %>">'+
+                        '<span class="title">'+"<%= @new_qnacomment.user.name %>"+'</span>'+
+                        '<span class="right">'+"<%= time_ago_in_words @new_qnacomment.created_at %>"+'</span>'+
+                        '<p class="pre-line">'+"<%= @new_qnacomment.qnacomment %>"+'<br>'+
+                        '<%= link_to '삭제', qna_qnacomment_path(@qna.id, @new_qnacomment), method: :delete, class: "right", remote: true %>'+
+                        '</p>'+'<br>'+'</li>');

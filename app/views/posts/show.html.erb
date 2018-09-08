@@ -1,0 +1,50 @@
+<br><br><br><br><br><br><br><br>
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user.email %>
+</p>
+
+<%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
+  <div class="input-field">
+    <%= f.text_area :comment, class: "materialize-textarea", placeholder: "댓글쓰기...", required: true, id: "comment" %>
+  </div>
+  <div class="input-field">
+    <%= f.button "댓글 쓰기", class: "btn indigo darken-4 right" %>
+    <%= link_to "리뷰 쓰기", "/reviews/new/#{@post.id}", class: "btn indigo darken-4 right" %>
+  </div>
+<% end %><br><br>
+
+<% if @post.comments.present? %>
+    <ul class="collection">
+      <div id="comment_box">
+        <% @post.comments.each do |c| %>
+          <li class="collection-item" id="comment_<%= c.id %>">
+            <span class="title"><%= @post.user.email %></span>
+            <span class="right"><%= time_ago_in_words c.created_at %></span><br><br><br>
+            <span class="pre-line"><%= c.comment %></span>
+            <% if c.user.id == current_user.id %>
+              <%= link_to '삭제', post_comment_path(@post, c), method: :delete, class: "right", remote: true %>
+            <% end %>
+          </li>
+        <% end %>
+      </div>
+    </ul>
+  <% else %>
+    <ul class="collection">
+      <div id="comment_box">
+      </div>
+    </ul>
+  <% end %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@notice) do |f| %>
+  <% if @notice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
+
+      <ul>
+      <% @notice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :content %><br>
+    <%= f.text_area :content, :class => "content-area form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "작성" , :class => "btn btn-lg btn-block offset-sm-4 col-4" %>
+  </div>
+<% end %>

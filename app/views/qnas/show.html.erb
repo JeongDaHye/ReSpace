@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @qna.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @qna.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @qna.user.email %>
+</p>
+
+<% if current_user.has_any_role? :admin %>
+<%= form_for(@qnacomment, url: qna_qnacomments_path(@qna), remote: true) do |f| %>
+  <div class="input-field">
+    <%= f.text_area :qnacomment, class: "materialize-textarea", placeholder: "댓글쓰기...", required: true, id: "qnacomment" %>
+  </div>
+  <div class="input-field">
+    <%= f.button "댓글 쓰기", class: "btn indigo darken-4 right" %>
+  </div>
+<% end %><br><br>
+<% end %>
+<% if @qna.qnacomments.present? %>
+    <ul class="collection">
+      <div id="qnacomment_box">
+        <% @qna.qnacomments.each do |q| %>
+          <li class="collection-item" id="qnacomment_<%= q.id %>">
+            <span class="title"><%= @qna.user.email %></span>
+            <span class="right"><%= time_ago_in_words q.created_at %></span><br><br><br>
+            <span class="pre-line"><%= q.qnacomment %></span>
+            <% if q.user.id == current_user.id %>
+              <%= link_to '삭제', qna_qnacomment_path(@qna, q), method: :delete, class: "right", remote: true %>
+            <% end %>
+          </li>
+        <% end %>
+      </div>
+    </ul>
+  <% else %>
+    <ul class="collection">
+      <div id="qnacomment_box">
+      </div>
+    </ul>
+  <% end %>
+
+<%= link_to 'Edit', edit_qna_path(@qna) %> |
+<%= link_to 'Back', qnas_path %>

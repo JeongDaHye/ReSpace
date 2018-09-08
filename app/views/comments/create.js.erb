@@ -1,0 +1,8 @@
+$('#comment').val("");
+$('#comment-size').text("<%= @post.comments.size %>");
+$('#comment_box').append('<li class="collection-item" id="comment_<%= @new_comment.id %>">'+
+                        '<span class="title">'+"<%= @new_comment.user.name %>"+'</span>'+
+                        '<span class="right">'+"<%= time_ago_in_words @new_comment.created_at %>"+'</span>'+
+                        '<p class="pre-line">'+"<%= @new_comment.comment %>"+'<br>'+
+                        '<%= link_to '삭제', post_comment_path(@post.id, @new_comment), method: :delete, class: "right", remote: true %>'+
+                        '</p>'+'<br>'+'</li>');

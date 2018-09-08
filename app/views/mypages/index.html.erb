@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <style>
+      body{
+         margin: 0;
+         display: flex;
+         flex-direction: column;
+      }
+      .card-form{
+         background-image: url(/background-img.jpg);
+         background-size: 100% 100%;
+         width: 100%;
+         margin: 0px;
+         padding-top: 100px;
+         display: flex;
+         flex-direction: row;
+      }
+      .section{
+         display: flex;
+         flex-direction: row;
+         width: 100%;
+         height: 100%;
+      }
+      .img{
+         margin-top: 5px;
+         width: 150px;
+         height: 150px;
+         border: 1px solid #BCE27F;
+         border-radius: 180px;
+      }
+      .image-section{
+         margin: 10px;
+      }
+      .button-group{
+         width:150px;
+         margin: 10px;
+         
+      }
+      .content-section{
+         width: 83%;
+         background-color: #BCE27F;
+         margin-top: 10px;
+         padding-left: 20px;
+         padding-right: 20px;
+      }
+      .name{
+         margin-top: 5px;
+      }
+      .user-inform{
+         margin-top: 8%;
+         width: 100%;
+         height:30px;
+         font-size: 15px;
+      }
+      button{
+         background-color: #96B566;
+         opacity: 0.8;
+         border: 1px solid;
+         font-size: 10px;
+         color: white;
+         border-radius: 8px;
+         margin-bottom: 5px;
+         min-width: 150px;
+         height: 35px
+      }
+      button:focus{
+         outline: 0;
+      }
+      button:hover{
+         opacity: 1;
+      }
+
+   </style>
+
+</head>
+<body>
+   <div class="card-form">
+      <div class="image-section">
+         <center><img class="img" src="/profile-img.jpg" alt="profile" /></center>
+      </div>
+      <div class="user-inform">
+         <div class="name">
+            <label id="user-role">수요자 </label>
+            <label id="user-name">홍길동</label>
+         </div>
+         <p>introduce</p>
+      </div>
+      </div> 
+   </div>
+   <div class="section">
+      <div class="button-group">
+         <div id="portfolio">
+            <button href="#">포트폴리오</button>
+         </div>
+         <div id="mypost">
+            <button href="#">내가 작성한 글</button>
+         </div>
+         <div id="like-supply">
+            <button href="#">좋아요한 공급자</button>
+         </div>
+         <div id="inform-edit">
+            <button href="#">정보수정</button>
+         </div>
+      </div>
+      <div class="content-section">
+        <div><!--포트폴리오-->
+        <p><포트폴리오></p>
+        <form>
+                <p>이름</p>
+                <input type="text" name="name">
+                <p>경력</p>
+                <input type="textarea">
+                <p>학력(대학교)</p>
+                <select>
+            	<option value="1">1학년</option>
+            	<option value="2">2학년</option>
+            	<option value="3">3학년</option>
+            	<option value="4">4학년</option>
+            	<option value="5">졸업</option>
+                </select>
+                <p>자기소개</p>
+                <input type="textarea">
+                <p>
+            	<input type="submit" value="제출">
+            	</p>
+        </form>
+        </div>
+        
+        <div><!--내가 쓴 글-->
+        <p><내가 쓴 글></p>
+            <div>
+            <p>[post]</p>
+            <ul> <% @posts.each do |p| %> 
+            <li><%= p.title %> : <%= p.content %></li> 
+            <% end %> 
+            </ul>
+            </div><br><br>
+            
+            <p>[Q&A]</p>
+            <div>
+            <ul> <% @qnas.each do |p| %> 
+            <li><%= p.title %> : <%= p.content %></li> 
+            <% end %> 
+            </ul>
+            </div><br><br>
+            
+            <p>[review]</p>
+            <div>
+            <ul> <% @reviews.each do |p| %> 
+            <li><%= p.title %> : <%= p.content %></li> 
+            <% end %> 
+            </ul>
+            </div>
+        </div>
+        
+        <div><!--좋아요 한 공급자-->
+        <p><좋아요 한 공급자></p>
+        </div>
+        
+        <div><!--정보수정-->
+        <p><정보수정></p>
+        <center>
+        <h2>정보 수정</h2>
+        
+      </div>
+   </div>
+</body>
+</html>

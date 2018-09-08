@@ -1,0 +1,33 @@
+
+<body style="background-color: #BCE27F;">
+
+   <div class="login-container offset-md-3 col-md-6">
+     <img src="/respace.jpg" alt="logo"/>
+     <div id="form">
+      <p class="lead text-muted">
+        <br><br><small>
+        새로운 계정 생성을 하시려면 회원 가입을 클릭해주세요!
+      </small></p>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs offset-sm-3">
+        <%= f.input :email, :input_html => { :class => 'form-control mb-1' }, placeholder:'Email', required: true, autofocus: true,  label: false %>
+        <%= f.input :password, :input_html => { :class => 'form-control mb-3' }, placeholder:'Password', required: true, label: false %>
+        <%= f.input :remember_me, label: '　로그인 정보 기억하기', :class => "form-control mb-5", as: :boolean if devise_mapping.rememberable? %>
+      </div>
+      <div class="form-actions offset-sm-3">
+      <%= f.button :submit, "로그인", :class => "btn btn-lg btn-block", :id => "login-button" %> <br>
+      </div>
+      <% end %>
+      <%= render "users/shared/links" %>
+      <a href="/home/index", class="links">비회원으로 들어가기</a>
+      <br/>
+      <br/>
+    </div>
+    </div>
+    <script>
+      $(document).ready(function(){
+        $("#mainNav").css("display","none");
+        $(".login-container").fadeIn("slow");
+      });
+    </script>
+</body>

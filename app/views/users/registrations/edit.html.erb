@@ -1,0 +1,60 @@
+<br><br><br><br><br><br><br>
+<center>
+<h2>정보 수정</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <% if current_user.user_type == "1" %>
+    <h3><%= "공급자" %></h3>
+    <% else %>
+    <h3><%= "수요자" %></h3>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :이메일 %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :자기소개 %><br />
+    <%= f.text_field :introduce, autocomplete: "introduce" %><br/>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :변경할비밀번호 %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> 자 이상</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :비밀번호확인 %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :현재비밀번호 %> <br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "수정하기" %>
+  </div>
+<% end %>
+
+<h3>계정을 지우시겠습니까?</h3>
+
+<p> <%= button_to "계정 지우기", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "뒤로", :back %>
+</center>
